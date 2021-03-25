@@ -58,11 +58,7 @@ http://www.mashup-template.com/
 https://html5up.net/
 https://www.creative-tim.com/bootstrap-themes/ui-kit?direction=asc&sort=price
 
-
-
 flask python boto3
-
-
 
     Change your models (in models.py).
     Run python manage.py makemigrations to create migrations for those changes

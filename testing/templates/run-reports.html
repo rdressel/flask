@@ -1,0 +1,50 @@
+{% include 'header.html' %}
+{% block body %}
+<!-- Header -->
+
+<header id="header">
+    <div class="logo container">
+      <div>
+        <h1><a href="index.html" id="logo">LH</a></h1>
+        <p>{{ report_header }}</p>
+          <div>
+            <section class="box highlight">
+                <a href="{{ url_for('download', report_data=report_data, report_columns=report_columns, my_var='my_value') }}" class="icon solid fa-download"><span class="label">Download</span></a>
+            </section>
+          </div>
+      </div>
+    </div>
+  </header>
+								
+  <table class="table">
+      <div class="col">
+        <div class="col-15-xs">
+          <tr>
+            {% for column_name in report_columns%}
+              <td><b>{{ column_name }}</b></td>
+            {% endfor %}
+            <th></th>
+          </tr>
+        </div>
+      </div>
+      {% for id in report_data.keys()%}
+        <tr>
+        {% for key, value in report_data[id].items() %}
+          {% if key == 'Name Tag' %}
+            <td>{{ value[:30] }}</td>
+          {% else %}
+            <td>{{ value }}</td>
+          {% endif %}
+        {% endfor %}
+        <th></th>
+      </tr>
+      {% endfor %}
+  </table>
+{% endblock %}
+
+
+{% include 'footer.html' %}
+
+</html>
+
+<!-- 
