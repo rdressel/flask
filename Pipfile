@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+appdirs = "==1.4.4"
+certifi = "==2020.12.5"
+distlib = "==0.3.1"
+filelock = "==3.0.12"
+importlib-metadata = "==3.7.3"
+pipenv = "==2020.11.15"
+six = "==1.15.0"
+typing-extensions = "==3.7.4.3"
+virtualenv = "==20.4.2"
+virtualenv-clone = "==0.5.4"
+zipp = "==3.4.1"
+flask = "*"
+boto3 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"

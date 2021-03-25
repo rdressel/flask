@@ -1,0 +1,69 @@
+{% include 'base.html' %}
+
+
+<div class="section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="section-container-spacer text-center">
+            <h1 class="h2">04 : Reports</h1>
+          </div>
+       </div>
+      </div>
+    </div>
+  </div>
+
+  {% block body %}
+  <table class="table">
+    <thead class="thead-dark">
+      <div class="col">
+        <div class="col-15-xs">
+          <tr>
+            {% for column_name in header%}
+              <th>{{ column_name }}</th>
+            {% endfor %}
+            <th></th>
+          </tr>
+        </div>
+      </div>
+    </thead>
+      {% for id in data.keys()%}
+        <tr>
+        {% for key, value in data[id].items() %}
+          {% if key == 'Name Tag' %}
+            <td>{{ value[:30] }}</td>
+          {% else %}
+            <td>{{ value }}</td>
+          {% endif %}
+        {% endfor %}
+        <th></th>
+      </tr>
+      {% endfor %}
+  </table>
+{% endblock %}
+
+
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <p>"This site has been developed by the I&O team"</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+
+
+<script type="text/javascript" src="./static/main.70a66962.js"></script></body>
+
+</html>
+
+<!-- 
+<td><center><a href="#" onclick="$('#loading').show(); repost('{{id}}');">{{id}}</a></center></td>
+--> 
