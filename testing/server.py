@@ -30,113 +30,40 @@ def my_home():
 @app.route('/download')
 def download():
     def generate():
-        process_data = StringIO()
-        print(type(process_data))
-        print(type(csv))
-        w = csv.writer(process_data)
-        print(type(w))
+        data = StringIO()
+        w = csv.writer(data)
 
-        is_first_pass=True
+        is_first_pass = True
         for item in report_data.keys():
-            key_list=[]
-            value_list=[]
+            key_list = []
+            value_list = []
             for key, value in report_data[item].items():
                 key_list.append(key)
                 value_list.append(value)
             # write header
             if is_first_pass:
-                is_first_pass=False
+                is_first_pass = False
                 w.writerow(key_list)
-                yield process_data.getvalue()
-                process_data.seek(0)
-                process_data.truncate(0)
+                yield data.getvalue()
+                data.seek(0)
+                data.truncate(0)
             # write row
             w.writerow(value_list)
-            yield process_data.getvalue()
-            process_data.seek(0)
-            process_data.truncate(0)
+            yield data.getvalue()
+            data.seek(0)
+            data.truncate(0)
             print(value_list)
 
     # add a filename
     headers = Headers()
-    headers.set('Content-Disposition', 'attachment', filename='save_report.csv')
+    headers.set('Content-Disposition', 'attachment',
+                filename='save_report.csv')
 
     # stream the response as the data is generated
     return Response(
         stream_with_context(generate()),
         mimetype='text/csv', headers=headers
     )
-
-
-#@app.route('/download')
-#def download_log():
-#    def generate():
-#        data = StringIO()
-#        w = csv.writer(data)
-#
-#        # write header
-#        w.writerow(('action', 'timestamp'))
-#        yield data.getvalue()
-#        data.seek(0)
-#        data.truncate(0)
-#
-#        # write each report_data item
-#        for item in report_data:
-#            w.writerow((
-#                item[0],
-#                item[1].isoformat()  # format datetime as string
-#            ))
-#            yield data.getvalue()
-#            data.seek(0)
-#            data.truncate(0)
-#
-#    # add a filename
-#    headers = Headers()
-#    headers.set('Content-Disposition', 'attachment', filename='save_report.csv')
-#
-#    # stream the response as the data is generated
-#    return Response(
-#        stream_with_context(generate()),
-#        mimetype='text/csv', headers=headers
-#    )
-
-#@app.route('/download')
-#def download():
-#    print(report_data.keys())
-#    for item in report_data.keys():
-#        row=csvList=''
-#        for key, value in report_data[item].items():
-#            if value is None:  # Test for NoneType
-#                value=''
-#            row+=str(value)
-#        csvList+=row
-#    #print(csvList)
-#    return render_template('index.html')
-
-
-#@app.route('/download')
-#def download():
-#    '''
-#    Download CSV file
-#    '''
-#    with open('outputs/report_data.csv', 'w') as csv_file:  
-#        writer = csv.writer(csv_file)
-#        for item in report_data.keys():
-#            for key, value in report_data[item].items():
-#                writer.writerow([key, value])
-#
-#    #print(send_csv(report_data))
-#    
-#    #    print(item)
-#    #    for key, value in report_data[item].items():
-#    #        print(key, value)
-#    print('')
-#    return send_file('outputs/report_data.csv',
-#                     mimetype='text/csv',
-#                     attachment_filename='report_data.csv',
-#                     as_attachment=True)
-
-    # return render_template('index.html')
 
 
 # @app.route('/submit_form', methods=['POST', 'GET'])
@@ -175,9 +102,6 @@ def html_page(page_name):
     Dynamic html pages
     '''
     return render_template(page_name)
-
-
-
 
 
 @app.route('/reports-<string:report_name>')
