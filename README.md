@@ -58,6 +58,8 @@ http://www.mashup-template.com/
 https://html5up.net/
 https://www.creative-tim.com/bootstrap-themes/ui-kit?direction=asc&sort=price
 
+https://blog.ruanbekker.com/blog/2017/12/14/graphing-pretty-charts-with-python-flask-and-chartjs/
+
 flask python boto3
 
     Change your models (in models.py).
